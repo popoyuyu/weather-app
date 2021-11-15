@@ -10,7 +10,7 @@ $(document).ready(function () {
     $('#location').val("");
 
     let request = new XMLHttpRequest();
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.API_KEY}`;
+    const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},US&units=imperial&appid=${process.env.API_KEY}`;
 
     request.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
@@ -23,10 +23,10 @@ $(document).ready(function () {
     request.send();
 
     function getElements(response) {
-      $('.showHumidity').text(`The humidity in ${city} is ${response.main.humidity}%`);
-      $('.showTemp').text(`The temperature in Fahrenheit is ${response.main.temp} degrees.`);
-      $('.showPressure').text(`The pressure is ${response.main.pressure}.`);
-      $('.showLocation').text(`The location is ${response.name}.`);
+      $('.showHumidity').text(`The humidity in ${city} is ${response.list[0].main.humidity}% `);
+      $('.showTemp').text(`The temperature in Fahrenheit is ${response.list[0].main.temp} degrees.`);
+      $('.showPressure').text(`The pressure is ${response.list[0].main.pressure}.`);
+      $('.showLocation').text(`The location is ${response.city.name}.`);
     }
   });
 });
