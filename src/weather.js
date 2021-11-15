@@ -4,4 +4,11 @@ export function kelvinConv(k) {
   return fahrenheit;
 }
 
+export function checkInput() {
+  if (this.status !== 200) {
+    return new TypeError("Not a valid location!");
+  } else {
+    return true;
+  }
+}
 
